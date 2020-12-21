@@ -68,3 +68,14 @@ xAxisLabel.append("text").attr("y", 0).attr("data-name", "age").attr("data-axis"
 xAxisLabel.append("text").attr("y", 30).attr("data-name", "income").attr("data-axis", "x")
           .attr("class", "aText inactive x").text("Median Household Income");
 
+
+//Create Y axes
+// reate variables for padding to use to customizr later
+var leftTextX = margin + 40;
+var leftTextY = (height + labelArea) / 2 - labelArea;
+          
+//append another group element for the axis to the left of the chart.
+svg.append("g").attr("class", "yText");
+          
+// make selectable
+var yText = d3.select(".yText");
