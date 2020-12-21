@@ -148,12 +148,40 @@ function buildGraph(dataset) {
                         var xVal;
                         var state = "<div>" + d.state + "</div>";
                         var yVal = "<div>" + currentY + ": " + d[currentY + "%</div>"];
-                        if (currentX === "poverty"_ {
+                        if (currentX === "poverty") {
                             xVal = "<div>" + currentX + ": " + d[currentX] + "%</div>";
                         }
                         else {
-                            xVal = "<div>" + currentX + ": " + d[currentX] + "</div>";
+                            xVal = "<div>" + currentX + ": " + parseFloat(d[currentX]) + "</div>";
                         }
+                    return state + xVal + yVal;
+                    });
+    svg.call(toolTip);
 
-                    }
+    //define formatting functions
+
+    function xWindow() {
+          // min selects smallest value
+        xMin = d3.min(dataset, function(d) {
+            return parseFloat(d[currentX]) * 0.90;
+          });
+      
+          // max selects largets value
+          xMax = d3.max(dataset, function(d) {
+            return parseFloat(d[currentX]) * 1.10;
+          });
+    }
+
+    function yWindow() {
+        xMin = d3.min(dataset, function(d) {
+            return parseFloat(d[currentY]) * 0.90;
+          });
+      
+          xMax = d3.max(dataset, function(d) {
+            return parseFloat(d[currentY]) * 1.10;
+          });
+    }
+
+
+
 }
