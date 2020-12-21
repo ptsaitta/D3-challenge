@@ -54,3 +54,17 @@ function xAxisLabelUpdate() {
 xAxisLabelUpdate();
 
 //append different y axis data depending on what dataset csv is selected
+
+//When poverty is selected
+
+xAxisLabel.append("text").attr("y", -30).attr("data-name", "poverty").attr("data-axis", "x")
+          .attr("class", "aText active x").text("% In Poverty");
+
+//When Age is selected
+xAxisLabel.append("text").attr("y", 0).attr("data-name", "age").attr("data-axis", "x")
+          .attr("class", "aText inactive x").text("Median Age");
+
+//When Income is selected
+xAxisLabel.append("text").attr("y", 30).attr("data-name", "income").attr("data-axis", "x")
+          .attr("class", "aText inactive x").text("Median Household Income");
+
