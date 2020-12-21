@@ -325,9 +325,42 @@ function buildGraph(dataset) {
                   .duration(250);
               });
 
+              labelChange(axis, self);
+        }
+        else {
+            //do same for Y axis
+            currentY = dataName;
+
+            //update y window and domain
+            yWindow();
+            yScale.domain([yMin, yMax]);
+
+            //transition to new axis, duration looks better
+            svg.select(".yAxis").transition().duration(250).call(yAxis);
+
+            //update circles
+            d3.selectAll("circle").each(function() {
+
+                d3.select(this).transition()
+                  .attr("cy", function(d) {       //cy reference in dataCircles
+                    return yScale(d[currentY]);
+                })
+                  .duration(250);
+            });
+            
+            //also need to update text that goes along with the circles
+            d3.selectAll(".stateText").each(function() {
+                d3.select(this).transition()
+                  .attr("dy", function(d) {
+                    return yScale(d[currentY]);
+                  })
+                  .duration(250);
+              });
+
+            labelChange(axis, self);
 
         }
-    }
+    }):
 
 
 
