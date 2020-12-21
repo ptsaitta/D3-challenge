@@ -31,12 +31,12 @@ function updateRadius() {
         circRadius = 10;
     }
 }
-updateRadius()
+updateRadius();
 
 //create x axis labels
 //apppend group element with x axis label in it
 
-svg.append("g").ttr("class", "xAxisLabel");
+svg.append("g").attr("class", "xAxisLabel"); //don't misspell .attr()
 
 var xAxisLabel = d3.select(".xAxisLabel");
 
@@ -51,6 +51,7 @@ function xAxisLabelUpdate() {
       ")"
   );
 }
+
 xAxisLabelUpdate();
 
 //append different x axis data depending on what dataset csv is selected
@@ -121,12 +122,12 @@ yText
 ///import data from .csv files, then use data in visualization
 //import with d3.csv upon load
 
-d3.csv("assets/data/data.csv").then(function(data) {
+d3.csv("./assets/data/data.csv").then(function(data) {
     
     //then visualize the data (which we will define below)
 
     buildGraph(data);
-  });
+});
 
 //function to visualize data, using what we've built so far
 
@@ -192,7 +193,7 @@ function buildGraph(dataset) {
         clickedText.classed("inactive", false).classed("active", true); // ^^
       }
 
-    }
+    
 
     //Make first scatterplot
 
@@ -360,8 +361,10 @@ function buildGraph(dataset) {
             labelChange(axis, self);
 
         }
-    }):
+    });
 
+
+}
 
 
         
