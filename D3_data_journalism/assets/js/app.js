@@ -53,9 +53,9 @@ function xAxisLabelUpdate() {
 }
 xAxisLabelUpdate();
 
-//append different y axis data depending on what dataset csv is selected
+//append different x axis data depending on what dataset csv is selected
 
-//When poverty is selected
+//When poverty is selected (default)
 
 xAxisLabel.append("text").attr("y", -30).attr("data-name", "poverty").attr("data-axis", "x")
           .attr("class", "aText active x").text("% In Poverty");
@@ -79,3 +79,41 @@ svg.append("g").attr("class", "yText");
           
 // make selectable
 var yText = d3.select(".yText");
+
+//updates position as a function of screen width dynamically
+function yAxisLabelUpdate() {
+    yText.attr(
+    "transform",
+    "translate(" + leftTextX + ", " + leftTextY + ")rotate(-45)"
+  );
+}
+yAxisLabelUpdate();
+
+//append different y axis data depending on what dataset csv is selected
+
+//When obesity is selected (default)
+yText
+  .append("text")
+  .attr("y", -30)
+  .attr("data-name", "obesity")
+  .attr("data-axis", "y")
+  .attr("class", "aText active y")
+  .text("Percentage Suffering from Obesity");
+
+  //Smokers
+yText
+  .append("text")
+  .attr("y", 0)
+  .attr("data-name", "smokes")
+  .attr("data-axis", "y")
+  .attr("class", "aText inactive y")
+  .text("Percentage who Smokes");
+
+  //No Hea;thcare
+yText
+  .append("text")
+  .attr("y", 30)
+  .attr("data-name", "healthcare")
+  .attr("data-axis", "y")
+  .attr("class", "aText inactive y")
+  .text("Percentage who lacks Healthcare");
