@@ -39,3 +39,18 @@ updateRadius()
 svg.append("g").ttr("class", "xAxisLabel");
 
 var xAxisLabel = d3.select(".xAxisLabel");
+
+//updates position as a function of screen width dynamically
+function xAxisLabelUpdate() {
+    xAxisLabel.attr(
+    "transform",
+    "translate(" +
+      ((width - labelArea) / 2 + labelArea) +
+      ", " +
+      (height - margin - 40) +
+      ")"
+  );
+}
+xAxisLabelUpdate();
+
+//append different y axis data depending on what dataset csv is selected
