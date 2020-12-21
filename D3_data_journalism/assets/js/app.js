@@ -25,10 +25,10 @@ var svg = d3.select("#scatter").append("svg").attr("width", width)
 var circRadius;
 function updateRadius() {
     if (width <= 500) {
-        circleRadius = 5;
+        circRadius = 5;
     }
     else {
-        circleRadius = 10;
+        circRadius = 10;
     }
 }
 updateRadius()
@@ -223,3 +223,31 @@ function buildGraph(dataset) {
         .call(yAxis)
         .attr("class", "yAxis")
         .attr("transform", "translate(" + (margin + labelArea) + ", 0)");
+
+
+        //make circles for each data entry
+    var dataCircles = svg.selectAll("g dataCircles").data(dataset).enter();
+
+        dataCircles
+          .append("circle")
+          .attr("cx", function(d) {
+            return xScale(d[currentX]);
+          })
+          .attr("cy", function(d) {
+            return yScale(d[currentY]);
+          })
+          .attr("r", circRadius)
+          .attr("class", function(d) {
+            return "stateCircle " + d.abbr;
+          })
+
+          //make data appear on hovering over and disappear on no longer hovering over
+         
+          .on("mouseover", function(d) {
+            toolTip.show(d, this);
+            d3.select(this).style("stroke", "#736d6d");
+          })
+          .on("mouseout", function(d) {
+            toolTip.hide(d);
+            d3.select(this).style("stroke", "#b0aeae");
+          });
