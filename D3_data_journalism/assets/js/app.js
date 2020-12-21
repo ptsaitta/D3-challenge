@@ -251,3 +251,38 @@ function buildGraph(dataset) {
             toolTip.hide(d);
             d3.select(this).style("stroke", "#b0aeae");
           });
+
+
+
+        //append text to the circles
+        dataCircles.append("text")
+          .text(function(d) {
+            return d.abbr; //appends the state abbr.
+        })
+        // Scale text
+          .attr("dx", function(d) {
+            return xScale(d[currentX]);
+        })
+        
+        //Add second argument to position text in middle of circle
+          .attr("dy", function(d) {
+            return yScale(d[currentY]) + circRadius / 2.5;
+        })
+          .attr("font-size", circRadius)
+          .attr("class", "stateText")
+        
+        //On mouseover show data
+          .on("mouseover", function(d) {
+            toolTip.show(d);
+            d3.select("." + d.abbr).style("stroke", "#736d6d");
+        })
+        
+        //On mouseout hide data
+          .on("mouseout", function(d) {
+            toolTip.hide(d);
+            d3.select("." + d.abbr).style("stroke", "#b0aeae");
+        });
+
+
+        
+            
