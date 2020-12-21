@@ -284,5 +284,28 @@ function buildGraph(dataset) {
         });
 
 
+    //Make graph respond to clicks to change axes
+
+    //select axis text "aText" from xAxisLabel above and store in variable
+    d3.selectAll(".aText").on("click", function() {
+        var self = d3.select(this);
+
+
+        var dataAxis = self.attr("data-axis");
+        var dataName = self.attr("data-name");
+
+        //from attr "x" from xLabelText
+        if (dataAxis === "x") {
+            //update current x axis
+            currentX = dataName;
+
+            //update x window and domain
+            xWindow();
+            xScale.domain([xMin, xMax]);
+        }
+    }
+
+
+
         
             
