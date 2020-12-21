@@ -202,9 +202,24 @@ function buildGraph(dataset) {
 
     //window values used to create scale for plot
 
-    var xScale = d3.scaleLinear().domain([xMin, xMax]);
-    var yScale = d3.scaleLinear().domain([yMin, yMax]);
+    var xScale = d3.scaleLinear().domain([xMin, xMax]).range([margin + labelArea, width - margin]);
+    var yScale = d3.scaleLinear().domain([yMin, yMax]).range([height - margin - labelArea, margin]);
 
     //pass these scales in to create axes
     var xAxis = d3.axisBottom(xScale);
     var yAxis = d3.axisLeft(yScale);
+
+    //add tick marks
+    xAxis.ticks(5);
+    yAxis.ticks(5);
+
+    //actually append axes to the avg element
+    svg.append("g")
+        .call(xAxis)
+        .attr("class", "xAxis")
+        .attr("transform", "translate(0," + (height - margin - labelArea) + ")");
+  
+    svg.append("g")
+        .call(yAxis)
+        .attr("class", "yAxis")
+        .attr("transform", "translate(" + (margin + labelArea) + ", 0)");
