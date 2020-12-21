@@ -16,10 +16,13 @@ var margin = 20;
 
 
 
+//append svg to <div id="scatter">
 
+var svg = d3.select("#scatter").append("svg").attr("width", width)
+            .attr("height", height).attr("class", "chart");
 
-var svg = d3.select("#scatter").append("svg");
-
+//set dot size
+var circRadius;
 function updateRadius() {
     if (width <= 500) {
         circleRadius = 5;
@@ -29,3 +32,10 @@ function updateRadius() {
     }
 }
 updateRadius()
+
+//create x axis labels
+//apppend group element with x axis label in it
+
+svg.append("g").ttr("class", "xAxisLabel");
+
+var xAxisLabel = d3.select(".xAxisLabel");
