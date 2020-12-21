@@ -194,4 +194,17 @@ function buildGraph(dataset) {
 
     }
 
-    
+    //Make first scatterplot
+
+    //grab x and y data windows
+    xWindow();
+    yWindow();
+
+    //window values used to create scale for plot
+
+    var xScale = d3.scaleLinear().domain([xMin, xMax]);
+    var yScale = d3.scaleLinear().domain([yMin, yMax]);
+
+    //pass these scales in to create axes
+    var xAxis = d3.axisBottom(xScale);
+    var yAxis = d3.axisLeft(yScale);
