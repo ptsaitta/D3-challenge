@@ -152,7 +152,7 @@ function buildGraph(dataset) {
                             xVal = "<div>" + currentX + ": " + d[currentX] + "%</div>";
                         }
                         else {
-                            xVal = "<div>" + currentX + ": " + parseFloat(d[currentX]) + "</div>";
+                            xVal = "<div>" + currentX + ": " + parseFloat(d[currentX]).toLocaleString("en") + "</div>";
                         }
                     return state + xVal + yVal;
                     });
@@ -182,6 +182,16 @@ function buildGraph(dataset) {
           });
     }
 
+//build function to handle changing the label if a new dataset is selected
+    function labelChange(axis, clickedText) {
+        
+        d3.selectAll(".aText").filter("." + axis).filter(".active")
+          .classed("active", false) //change appearance of active/inactive datasets
+          .classed("inactive", true);
+    
+        clickedText.classed("inactive", false).classed("active", true); // ^^
+      }
 
+    }
 
-}
+    
