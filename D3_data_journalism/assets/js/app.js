@@ -302,6 +302,30 @@ function buildGraph(dataset) {
             //update x window and domain
             xWindow();
             xScale.domain([xMin, xMax]);
+
+            //transition to new axis, duration looks better
+            svg.select(".xAxis").transition().duration(250).call(xAxis);
+
+            //update circles
+            d3.selectAll("circle").each(function() {
+
+                d3.select(this).transition()
+                  .attr("cx", function(d) {       //cx reference in dataCircles
+                    return xScale(d[currentX]);
+                })
+                  .duration(250);
+            });
+            
+            //also need to update text that goes along with the circles
+            d3.selectAll(".stateText").each(function() {
+                d3.select(this).transition()
+                  .attr("dx", function(d) {
+                    return xScale(d[currentX]);
+                  })
+                  .duration(250);
+              });
+
+
         }
     }
 
