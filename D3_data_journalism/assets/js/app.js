@@ -117,3 +117,43 @@ yText
   .attr("data-axis", "y")
   .attr("class", "aText inactive y")
   .text("Percentage who lacks Healthcare");
+
+///import data from .csv files, then use data in visualization
+//import with d3.csv upon load
+
+d3.csv("assets/data/data.csv").then(function(data) {
+    
+    //then visualize the data (which we will define below)
+
+    buildGraph(data);
+  });
+
+//function to visualize data, using what we've built so far
+
+function buildGraph(dataset) {
+    //define current axes - initialize with defaults from csv file headers
+    var currentX = "poverty";
+    var currentY = "obesity";
+
+    //define other parameters for later
+
+    var xMin;
+    var xMax;
+    var yMin;
+    var yMax;
+
+    //d3 tooltip d3-tip
+    var toolTip = d3.tip().attr("class", "d3-tip").offset([50,-50])
+                    .html(function(d) {
+                        var xVal;
+                        var state = "<div>" + d.state + "</div>";
+                        var yVal = "<div>" + currentY + ": " + d[currentY + "%</div>"];
+                        if (currentX === "poverty"_ {
+                            xVal = "<div>" + currentX + ": " + d[currentX] + "%</div>";
+                        }
+                        else {
+                            xVal = "<div>" + currentX + ": " + d[currentX] + "</div>";
+                        }
+
+                    }
+}
